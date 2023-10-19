@@ -1,17 +1,21 @@
 // ProtectedPage.js
-import React, { useState, useEffect } from 'react';
-import "./index.module.scss"
+import React, { useState, useEffect, FC, FormEvent } from 'react';
+import styles from './index.module.scss'
 
-const ProtectedPage = () => {
+interface ILockProps {
+  component: any
+}
+
+const Lock: FC<ILockProps> = ({ component }) => {
   const [code, setCode] = useState('');
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [attempts, setAttempts] = useState(0);
 
-  const handleCodeChange = (event) => {
+  const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCode(event.target.value);
   };
 
-  const handleCodeSubmit = (event) => {
+  const handleCodeSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Replace 'yourCorrectCode' with your desired correct code
     if (code === '18029jdkj!pakmsdkl1iopks!asda./') {
@@ -53,10 +57,7 @@ const ProtectedPage = () => {
   if (isAuthorized) {
     // Render the protected content here
     return (
-      <div className="protected-page">
-        <h1>Welcome to my website!</h1>
-        {/* Protected content */}
-      </div>
+       component 
     );
   }
 
@@ -76,8 +77,8 @@ const ProtectedPage = () => {
   }
 
   return (
-    <div className="protected-page">
-      <h1>Welcome to my website!</h1>
+    <div className={styles.protected_page}>
+      <h1>Welcome</h1>
       {attempts < 5 ? (
         <>
           <p>Please enter the correct code to access the content:</p>
@@ -93,4 +94,4 @@ const ProtectedPage = () => {
   );
 };
 
-export default ProtectedPage;
+export default Lock;

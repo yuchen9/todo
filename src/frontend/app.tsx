@@ -9,6 +9,7 @@ import { listTodos, TodoUpdate } from "../todo";
 import Header from "./header";
 import MainSection from "./main-section";
 import "todomvc-app-css/index.css";
+import Lock from "./Lock";
 
 // This is the top-level component for our app.
 const App = ({ rep }: { rep: Replicache<M> }) => {
@@ -48,13 +49,15 @@ const App = ({ rep }: { rep: Replicache<M> }) => {
 
   return (
     <div>
-      <Header onNewItem={handleNewItem} />
+      <Lock 
+      component={<>      <Header onNewItem={handleNewItem} />
       <MainSection
         todos={todos}
         onUpdateTodo={handleUpdateTodo}
         onDeleteTodos={handleDeleteTodos}
         onCompleteTodos={handleCompleteTodos}
-      />
+        /></>} />
+
     </div>
   );
 };
